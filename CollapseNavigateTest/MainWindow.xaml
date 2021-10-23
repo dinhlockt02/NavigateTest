@@ -1,0 +1,111 @@
+﻿<Window x:Class="CollapseNavigateTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CollapseNavigateTest"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="810" Width="1447"
+        xmlns:menubar="clr-namespace:CollapseNavigateTest.View"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:command="clr-namespace:CollapseNavigateTest.Command"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ResourceDictionary Source="/Resources/SelectViewResources.xaml"></ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.Resources>
+            <Storyboard x:Key="MenuOpen">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridNavigate">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="60"></EasingDoubleKeyFrame>
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200"></EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+            <Storyboard x:Key="MenuClose">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridNavigate">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="200"></EasingDoubleKeyFrame>
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="60"></EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+        </Grid.Resources>
+        <Grid.Triggers>
+            <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="BtnOpenMenu">
+                <BeginStoryboard Storyboard="{StaticResource MenuOpen}"></BeginStoryboard>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="BtnCloseMenu">
+                <BeginStoryboard Storyboard="{StaticResource MenuClose}"></BeginStoryboard>
+            </EventTrigger>
+        </Grid.Triggers>
+        <Grid HorizontalAlignment="Right" VerticalAlignment="Bottom" 
+              Width="1383" Height="733" Margin="0,0,-0.2,0">
+            <UserControl Content="{Binding SelectedViewModel}" Margin="10,10,0,0"></UserControl>
+        </Grid>
+        <menubar:MenuBar Grid.ColumnSpan="2" Margin="0,0,-0.2,0"></menubar:MenuBar>
+        <Grid x:Name="GridNavigate" Width="60" HorizontalAlignment="Left" 
+          ClipToBounds="True"
+          ScrollViewer.CanContentScroll="False">
+            <Grid Background="#005faf">
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Button x:Name="BtnCloseMenu" Height="50" Width="60" HorizontalAlignment="Right" VerticalAlignment="Top" 
+                        Background="{x:Null}" BorderBrush="{x:Null}"
+                        Foreground="White"
+                        Visibility="Collapsed"
+                        Click="Btn_Click">
+                        <materialDesign:PackIcon Kind="ArrowLeft" Width="25" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Button>
+                    <Button x:Name="BtnOpenMenu" Height="50" Width="60" HorizontalAlignment="Right" VerticalAlignment="Top" 
+                        Background="{x:Null}" BorderBrush="{x:Null}" 
+                        Foreground="White"
+                        Click="Btn_Click">
+                        <materialDesign:PackIcon Kind="Menu" Width="25" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Button>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <ListView  Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding command}" CommandParameter="{Binding}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <ListViewItem x:Name="ItemHome" Height="60" >
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="ViewDashboard" Height="25" Width="25" Margin="10"/>
+                                <TextBlock Text="Trang chủ" VerticalAlignment="Center" Margin="20 10"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem x:Name="ItemCreate" Height="60">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Doctor" Height="25" Width="25" Margin="10"/>
+                                <TextBlock Text="Bác sĩ" VerticalAlignment="Center" Margin="20 10"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem Height="60">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Account" Height="25" Width="25" Margin="10"/>
+                                <TextBlock Text="Bệnh Nhân" VerticalAlignment="Center"  Margin="20 10"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem Height="60">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Toolbox" Height="25" Width="25" Margin="10"/>
+                                <TextBlock Text="Vật tư" VerticalAlignment="Center"  Margin="20 10"/>
+                            </StackPanel>
+                        </ListViewItem>
+                    </ListView>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
