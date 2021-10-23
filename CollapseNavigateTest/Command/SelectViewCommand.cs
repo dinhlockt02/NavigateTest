@@ -1,5 +1,4 @@
-﻿using CollapseNavigateTest.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,12 +9,6 @@ namespace CollapseNavigateTest.Command
 {
     class SelectViewCommand : ICommand
     {
-        private MainWindowViewModel mainWindowViewModel;
-        public SelectViewCommand(MainWindowViewModel mainWindowViewModel)
-        {
-            this.mainWindowViewModel = mainWindowViewModel;
-        }
-
         public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)

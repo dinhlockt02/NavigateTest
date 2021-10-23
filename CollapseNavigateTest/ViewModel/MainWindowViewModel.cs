@@ -1,5 +1,4 @@
-﻿using CollapseNavigateTest.Command;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +21,7 @@ namespace CollapseNavigateTest.ViewModel
             }
         }
 
-        public ICommand SelectViewCommand
+        public ICommand UpdateViewCommand
         {
             get;
             set;
@@ -30,7 +29,7 @@ namespace CollapseNavigateTest.ViewModel
 
         public MainWindowViewModel()
         {
-            SelectViewCommand = new SelectViewCommand(this);
+            //UpdateViewCommand = new UpdateViewCommand(this);
         }
     }
 }
