@@ -6,6 +6,12 @@
         <view:DashBoard></view:DashBoard>
     </DataTemplate>
     <DataTemplate DataType="{x:Type viewmodel:DoctorViewModel}">
-        <view:DashBoard></view:DashBoard>
+        <view:Doctor></view:Doctor>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type viewmodel:PatientViewModel}">
+        <view:Patient></view:Patient>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type viewmodel:FacilitiesViewModel}">
+        <view:Facilities></view:Facilities>
     </DataTemplate>
 </ResourceDictionary>

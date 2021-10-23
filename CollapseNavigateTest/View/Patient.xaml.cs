@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace CollapseNavigateTest.View
 {
     /// <summary>
-    /// Interaction logic for MenuBar.xaml
+    /// Interaction logic for Patient.xaml
     /// </summary>
-    public partial class MenuBar : UserControl
+    public partial class Patient : UserControl
     {
-        public MenuBar()
+        public Patient()
         {
             InitializeComponent();
         }
